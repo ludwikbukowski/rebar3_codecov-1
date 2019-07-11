@@ -81,7 +81,7 @@ get_source_path(Module) when is_atom(Module) ->
     Name = atom_to_list(Module)++".erl",
     try filelib:wildcard([filename:join(["src/**/", Name])]) of
         [P] -> P;
-        _ -> Issue = io_lib:format("Failed to calculate the source path of module ~p~n", [Module]),
+        Other -> Issue = io_lib:format("Failed to calculate the source path of module ~p~n. Other: ~p", [Module, Other]),
              rebar_api:warn("~s~n", [Issue]),
              []
     catch
