@@ -87,7 +87,7 @@ get_source_path(Module) when is_atom(Module) ->
     catch
         Error:Reason ->
             Issue = io_lib:format("Failed to calculate the source path of module ~p~n
-                                     falling back to ~s", [Module, Name]),
+                                     falling back to ~s. Err: ~p, Reason: ~p", [Module, Name, Error, Reason]),
             rebar_api:warn("~s~n~p~n~p~n~p~n", [Issue, Error, Reason, erlang:get_stacktrace()]),
             Name
     end.
